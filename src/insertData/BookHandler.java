@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class BookHandler {
 
-    public static void addBook(Connection conn, Scanner scanner, int entries) throws SQLException {
+    public static void addBook(Connection conn, Scanner scanner, int entries) {
         int i = 0;
         while (i < entries) {
             try {
