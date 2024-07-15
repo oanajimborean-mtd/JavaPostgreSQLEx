@@ -19,7 +19,7 @@ public class AuthorHandler {
                     String name = scanner.nextLine();
 
                     if (!isValidName(name)) {
-                    System.err.println("Error: Numele autorului trebuie sa conțina doar litere.");
+                    System.err.println("Error: Numele autorului trebuie sa contina doar litere.");
                     continue;
                     }
 

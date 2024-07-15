@@ -19,7 +19,7 @@ public class MemberHandler {
                     System.out.println("Introdu numele membrului: ");
                     String name = scanner.nextLine();
                     if(!isValidName(name)){
-                        System.err.println("Error: Numele membrului trebuie sa conțina doar litere.");
+                        System.err.println("Error: Numele membrului trebuie sa contina doar litere.");
                         continue;
                     }
 
