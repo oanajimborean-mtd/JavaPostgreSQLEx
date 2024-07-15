@@ -9,8 +9,6 @@ public class AuthorHandler {
 
     public static void addAuthor(Connection conn, Scanner scanner, int entries) {
         int i = 0;
-        String insertAuthor = "INSERT INTO Authors (author_id, name, date_of_birth) VALUES (?, ?, ?)";
-        try (PreparedStatement pstmt = conn.prepareStatement(insertAuthor)) {
             while (i < entries) {
                 try {
                     System.out.println("Introdu id-ul autorului: ");
@@ -43,10 +41,14 @@ public class AuthorHandler {
                         }
                     }
 
-                    pstmt.setInt(1, authorId);
-                    pstmt.setString(2, name);
-                    pstmt.setDate(3, java.sql.Date.valueOf(birthDate));
-                    pstmt.executeUpdate();
+                    String insertAuthor = "INSERT INTO Authors (author_id, name, date_of_birth) VALUES (?, ?, ?)";
+                    try (PreparedStatement pstmt = conn.prepareStatement(insertAuthor)) {
+                        pstmt.setInt(1, authorId);
+                        pstmt.setString(2, name);
+                        pstmt.setDate(3, java.sql.Date.valueOf(birthDate));
+                        pstmt.executeUpdate();
+                    }
+
                     i++;
 
                 } catch (InputMismatchException e) {
@@ -56,11 +58,7 @@ public class AuthorHandler {
                     System.err.println("Database error: " + sqlEx.getMessage());
                 }
             }
-        } catch(SQLException e){
-            System.err.println("Eroare la prepared statement: " + e.getMessage());
-            }
         }
-
 
     private static boolean isValidName(String name) {
         return name.matches("[a-zA-Z\\s]+");

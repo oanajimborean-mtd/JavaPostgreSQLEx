@@ -10,8 +10,6 @@ public class MemberHandler {
 
     public static void addMember(Connection conn, Scanner scanner, int entries) throws SQLException {
         int i = 0;
-        String insertMember = "INSERT INTO Members (member_id, name, date_signup) VALUES (?, ?, ?)";
-        try (PreparedStatement pstmt = conn.prepareStatement(insertMember)) {
         while(i < entries) {
             try {
                     System.out.println("Introdu id-ul membrului: ");
@@ -44,12 +42,15 @@ public class MemberHandler {
                         }
                     }
 
+                String insertMember = "INSERT INTO Members (member_id, name, date_signup) VALUES (?, ?, ?)";
+                try (PreparedStatement pstmt = conn.prepareStatement(insertMember)) {
                     pstmt.setInt(1, memberId);
                     pstmt.setString(2, name);
                     pstmt.setDate(3, java.sql.Date.valueOf(dateSignup));
                     pstmt.executeUpdate();
-
+                }
                     i++;
+
             } catch(InputMismatchException e){
                 System.err.println("Error: Formatul id-ului nu este corespunzator. Te rog introdu un id valid.");
                 scanner.nextLine();
@@ -57,9 +58,7 @@ public class MemberHandler {
                 System.err.println("Database error: " + sqlEx.getMessage());
             }
         }
-    }  catch(SQLException e){
-            System.err.println("Eroare la prepared statement: " + e.getMessage());
-        }
+
     }
     private static boolean isValidName(String name) {
         return name.matches("[a-zA-Z\\s]+");
