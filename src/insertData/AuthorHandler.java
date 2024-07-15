@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class AuthorHandler {
 
-    public static void addAuthor(Connection conn, Scanner scanner, int entries) throws SQLException {
+    public static void addAuthor(Connection conn, Scanner scanner, int entries) {
         int i = 0;
         while(i < entries) {
             try {
@@ -17,6 +17,11 @@ public class AuthorHandler {
 
                     System.out.println("Introdu numele autorului: ");
                     String name = scanner.nextLine();
+
+                    if (!isValidName(name)) {
+                    System.err.println("Error: Numele autorului trebuie sa conțina doar litere.");
+                    continue;
+                    }
 
                     System.out.println("Introdu data nasterii a autorului in format yyyy-mm-dd: ");
                     String birthDate = scanner.nextLine();
@@ -39,5 +44,9 @@ public class AuthorHandler {
                 System.err.println("Database error: " + sqlEx.getMessage());
             }
         }
+    }
+
+    private static boolean isValidName(String name) {
+        return name.matches("[a-zA-Z\\s]+");
     }
 }

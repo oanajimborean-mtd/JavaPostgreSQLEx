@@ -18,6 +18,10 @@ public class MemberHandler {
 
                     System.out.println("Introdu numele membrului: ");
                     String name = scanner.nextLine();
+                    if(!isValidName(name)){
+                        System.err.println("Error: Numele membrului trebuie sa conțina doar litere.");
+                        continue;
+                    }
 
                     System.out.println("Introdu data inscrierii in format yyyy-mm-dd: ");
                     String dateSignup = scanner.nextLine();
@@ -35,10 +39,12 @@ public class MemberHandler {
                 scanner.nextLine();
             } catch(IllegalArgumentException iae){
                 System.err.println("Error: Te rog introdu data in formatul yyyy-mm-dd");
-                scanner.nextLine();
             } catch(SQLException sqlEx){
                 System.err.println("Database error: " + sqlEx.getMessage());
             }
         }
+    }
+    private static boolean isValidName(String name) {
+        return name.matches("[a-zA-Z\\s]+");
     }
 }
