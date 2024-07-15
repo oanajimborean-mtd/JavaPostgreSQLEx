@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/src/Main.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/insertData/AuthorHandler.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/insertData/BookHandler.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/insertData/BookPublisherHandler.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/queryData/BookAuthorQueryManager.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/queryData/BookMemberQueryManager.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/queryData/MemberBookQueryManager.java" dialect="GenericSQL" />
+  </component>
+</project>
